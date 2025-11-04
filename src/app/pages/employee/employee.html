@@ -8,11 +8,24 @@
                             <strong>Portal do Funcionário</strong> 
                         </div>
                         <div class="col-6 text-end">
-                            <button class="btn btn-warning" (click)="addEmployee()"><i class="fa-solid fa-user-plus"></i> Adicionar Funcionário</button>
+                            <button class="btn btn-warning" (click)="addEmployee()"><i class="fa-solid fa-user-plus"></i> Cadastrar Funcionário</button>
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
+                 <div class="card-body">
+                <!-- 🔍 Barra de pesquisa -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text bg-secondary text-white">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Pesquisar funcionário..."
+                    [(ngModel)]="searchText" 
+                    /> <!--- O campo de pesquisa ([(ngModel)]="searchText") liga diretamente o valor digitado (searchText) ao filtro no template.
+Isso significa que toda vez que o usuário digita uma letra, o Angular atualiza o valor de searchText e o template é re-renderizado — ou seja, o filtro acontece automaticamente, sem precisar clicar em nenhum botão.-->
+                </div>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -25,7 +38,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for (item of employeeList; track $index) {
+                            @for (item of filteredEmployees; track $index) {
                                 <tr>
                                     <td>{{$index+1}}</td>
                                     <td>{{item.employeeName}}</td>

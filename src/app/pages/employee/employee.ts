@@ -19,20 +19,24 @@ export class Employee implements OnInit {
   childDepartmentList: ChildDept[] = [];
   employeeList: EmployeeClass[] = [];
   formTitle: string = 'Cadastrar um Funcionário';
+  searchText: string = '';
 
   ngOnInit(): void {
+    //O que acontece ao carregar a página
     this.loadParentDept();
     this.loadEmployee();
     this.getAllChild();
   }
 
   loadEmployee(){
+    //Carrega a lista de funcionários
     this.masterSrv.GetAllEmployees().subscribe((res:EmployeeClass[])=>{
       this.employeeList = res;
     })
   }
 
  loadParentDept() {
+  //Carrega a lista de departamentos pais
     this.masterSrv.getDepartment().subscribe((res: ParentDept[]) => {
       this.parentDepartmentList = res;
       //alert(JSON.stringify(this.parentDepartmentList));
@@ -40,22 +44,36 @@ export class Employee implements OnInit {
   }
 
   getAllChild() {
+    //Carrega a lista de departamentos filhos
     this.masterSrv.GetAllChildDepartment().subscribe((res:ChildDept[])=>{
       this.childDepartmentList = res;
       //alert(JSON.stringify(this.childDepartmentList));
     })
   }
 
-  
+  get filteredEmployees() {
+    // Filtro de funcionários baseado no texto de pesquisa
+    if (!this.searchText) return this.employeeList;
+
+    const term = this.searchText.toLowerCase();
+    return this.employeeList.filter(emp =>
+      emp.employeeName.toLowerCase().includes(term) ||
+      emp.emailId.toLowerCase().includes(term) ||
+      emp.contactNo.toLowerCase().includes(term) ||
+      emp.gender.toLowerCase().includes(term)
+    );
+  }
 
   onEdit(item: EmployeeClass) {
+    // Preenche o formulário com os dados do funcionário selecionado para edição
     this.formTitle = 'Atualizar um Funcionário';
-    this.employeeObj = item;
+    this.employeeObj = { ...item }; // Faz uma cópia (não altera o original da lista)
     this.getAllChild();
   }
   
 
   onSaveEmployee(){
+    //Cria um novo funcionário
     if (
       !this.employeeObj.employeeName ||
       !this.employeeObj.contactNo ||
@@ -93,11 +111,13 @@ export class Employee implements OnInit {
   }
 
   addEmployee(){
+    //Prepara o formulário para adicionar um novo funcionário
     this.formTitle = 'Cadastrar um Funcionário';
     this.employeeObj = new EmployeeClass();
   }
 
   onUpdateEmployee() {
+    //Atualiza os dados do funcionário
   if (!this.employeeObj.employeeId || this.employeeObj.employeeId === 0) {
     alert('Selecione um funcionário para atualizar.');
     return;
@@ -117,6 +137,7 @@ export class Employee implements OnInit {
 }
 
    onDelete(employeeId: number) {
+    //Deleta um funcionário
   if (confirm('Tem certeza que deseja deletar este funcionário?')) {
     this.masterSrv.deleteEmployee(employeeId).subscribe({
       next: () => {
