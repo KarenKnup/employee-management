@@ -66,7 +66,7 @@ export class Employee implements OnInit {
 
   onEdit(item: EmployeeClass) {
     // Preenche o formulário com os dados do funcionário selecionado para edição
-    this.formTitle = 'Atualizar um Funcionário';
+    this.formTitle = 'Atualizar dados de um Funcionário';
     this.employeeObj = { ...item }; // Faz uma cópia (não altera o original da lista)
     this.getAllChild();
   }
@@ -118,39 +118,39 @@ export class Employee implements OnInit {
 
   onUpdateEmployee() {
     //Atualiza os dados do funcionário
-  if (!this.employeeObj.employeeId || this.employeeObj.employeeId === 0) {
-    alert('Selecione um funcionário para atualizar.');
-    return;
-  }
-
-  this.masterSrv.updateEmployee(this.employeeObj.employeeId, this.employeeObj).subscribe({
-    next: () => {
-      alert('Funcionário atualizado com sucesso!');
-      this.employeeObj = new EmployeeClass(); // 🔹 Limpa o formulário
-      this.loadEmployee(); // Atualiza a lista sem recarregar a página
-    },
-    error: (err) => {
-      console.error(err);
-      alert('Erro ao atualizar funcionário.');
+    if (!this.employeeObj.employeeId || this.employeeObj.employeeId === 0) {
+      alert('Selecione um funcionário para atualizar.');
+      return;
     }
-  });
-}
 
-   onDelete(employeeId: number) {
-    //Deleta um funcionário
-  if (confirm('Tem certeza que deseja deletar este funcionário?')) {
-    this.masterSrv.deleteEmployee(employeeId).subscribe({
+    this.masterSrv.updateEmployee(this.employeeObj.employeeId, this.employeeObj).subscribe({
       next: () => {
-        alert('Funcionário deletado com sucesso!');
-        this.loadEmployee(); // Atualiza a lista imediatamente
+        alert('Funcionário atualizado com sucesso!');
+        this.employeeObj = new EmployeeClass(); // 🔹 Limpa o formulário
+        this.loadEmployee(); // Atualiza a lista sem recarregar a página
       },
       error: (err) => {
         console.error(err);
-        alert('Erro ao deletar funcionário.');
+        alert('Erro ao atualizar funcionário.');
       }
     });
   }
-}
+
+   onDelete(employeeId: number) {
+      //Deleta um funcionário
+    if (confirm('Tem certeza que deseja deletar este funcionário?')) {
+      this.masterSrv.deleteEmployee(employeeId).subscribe({
+        next: () => {
+          alert('Funcionário deletado com sucesso!');
+          this.loadEmployee(); // Atualiza a lista imediatamente
+        },
+        error: (err) => {
+          console.error(err);
+          alert('Erro ao deletar funcionário.');
+        }
+      });
+    }
+  }
 
 
 }

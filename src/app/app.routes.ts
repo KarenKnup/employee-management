@@ -4,6 +4,7 @@ import {Layout} from "./pages/layout/layout";
 import {Dashboard} from "./pages/dashboard/dashboard";
 import {Employee} from "./pages/employee/employee";
 import {NewLeave} from "./pages/new-leave/new-leave";
+import { EarnedLeave } from './pages/earned-leave/earned-leave';
 
 export const routes: Routes = [
     {
@@ -30,6 +31,10 @@ export const routes: Routes = [
             {
                 path: 'leave-request',
                 component: NewLeave
+            },
+            {
+                path: 'earned-leave',
+                component: EarnedLeave
             }
         ]
     }

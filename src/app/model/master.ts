@@ -44,7 +44,7 @@ export interface LeaveType {
     typeName: string
   }
   
-  export interface EarnedLeave  {
+  export interface EarnedLeaveClass  {
     earnedLeaveId: number
     employeeId: number
     totalEarnedLeaves: number

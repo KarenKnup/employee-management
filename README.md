@@ -1,4 +1,11 @@
-For Login as Hr Admin use below credentials
-email: hradmin@gmail.com
-password: 112233
-Once you login the create Employee and use Employee credentials to login as employee
+- Colocar a API na pasta depois que terminar e o SQL do banco de dados
+- Escrever o passo a passo e instrções no readme (tem que criar o banco de dados e etc)
+- Conter a qtde de informações nas tablespara não ficar infinito
+- Responsividade
+- favicon da pagina
+- alterar imagem para colocar na pagina de login e no layout do nome do projeto
+- adicionar a opção de employee e admin na página de employees 
+- Página de dashboard
+- Página de new leave
+
+

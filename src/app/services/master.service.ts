@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { APIResponse, EarnedLeave, EmployeeClass, LeaveRequest, ParentDept, ChildDept } from '../model/master';
+import { APIResponse, EarnedLeaveClass, EmployeeClass, LeaveRequest, ParentDept, ChildDept } from '../model/master';
 
 
 @Injectable({
@@ -43,5 +43,20 @@ export class MasterService {
     return this.http.delete(`${this.apiUrl}Employee/Delete/${id}`);
   }
 
-  
+  GetAllEarnedLeaves() : Observable<EarnedLeaveClass[]> {
+    return this.http.get<EarnedLeaveClass[]>(this.apiUrl + "EarnedLeave")
+  }
+
+  createEarnedLeave(earnedLeave: EarnedLeaveClass): Observable<any> {
+    return this.http.post(this.apiUrl + "EarnedLeave/Create", earnedLeave);
+  }
+
+  deleteEarnedLeave(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}EarnedLeave/Delete/${id}`);
+  }
+
+  updateEarnedLeave(id: number, earnedLeave: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}EarnedLeave/Update/${id}`, earnedLeave);
+  }
+
 }

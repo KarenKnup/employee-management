@@ -8,7 +8,7 @@
                             <strong>Portal do Funcionário</strong> 
                         </div>
                         <div class="col-6 text-end">
-                            <button class="btn btn-warning" (click)="addEmployee()"><i class="fa-solid fa-user-plus"></i> Cadastrar Funcionário</button>
+                            <button class="btn btn-success border border-white" (click)="addEmployee()"><i class="fa-solid fa-user-plus"></i> Cadastrar</button>
                         </div>
                     </div>
                 </div>
@@ -120,9 +120,9 @@ Isso significa que toda vez que o usuário digita uma letra, o Angular atualiza 
                           
                         </div> 
                         @if (employeeObj.employeeId == 0) {
-                            <button type="button" (click)="onSaveEmployee()" class="btn btn-warning mt-3">Cadastrar</button>
+                            <button type="button" (click)="onSaveEmployee()" class="btn btn-success mt-3"><i class="fa-solid fa-floppy-disk"></i> Cadastrar</button>
                         } @else { 
-                            <button type="button" (click)="onUpdateEmployee()" class="btn btn-success mt-3">Atualizar</button>
+                            <button type="button" (click)="onUpdateEmployee()" class="btn btn-warning mt-3"><i class="fa-solid fa-pen-to-square"></i> Atualizar</button>
                         }
                        
                     </form>

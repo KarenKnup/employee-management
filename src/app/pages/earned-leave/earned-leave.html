@@ -1,0 +1,114 @@
+<div class="container-fluid my-4">
+  <div class="row">
+    <div class="col-9">
+      <div class="card">
+        <div class="card-header bg-secondary">
+          <div class="row">
+            <div class="col-6 text-white">
+              <strong>Portal de Licenças</strong>
+            </div>
+            <div class="col-6 text-end">
+              <button class="btn btn-success border border-white" (click)="addEarnedLeave()">Cadastrar</button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+            <!-- 🔍 Barra de pesquisa -->
+            <div class="input-group mb-3">
+                <span class="input-group-text bg-secondary text-white">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Pesquisar funcionário..."
+                    [(ngModel)]="searchText" /> 
+                    <!--- O campo de pesquisa ([(ngModel)]="searchText") liga diretamente o valor digitado (searchText) ao filtro no template.
+Isso significa que toda vez que o usuário digita uma letra, o Angular atualiza o valor de searchText e o template é re-renderizado — ou seja, o filtro acontece automaticamente, sem precisar clicar em nenhum botão.-->
+            </div>
+          <div class="row">
+            @for (item of filteredEmployees; track $index) {
+              <div class="col-md-4">
+                <div class="card mb-4">  
+                  <div class="card-header d-flex justify-content-between align-items-center">  
+                    <span><strong>{{item.employeeName}}</strong> </span>
+                  </div>  
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-6">
+                        <strong>Licenças disponíveis:</strong> {{item.totalEarnedLeaves}}
+                      </div>
+                      <div class="col-6">
+                        <strong>Licenças médicas disponíveis:</strong> {{item.totalSickEarnedLeaves}}
+                      </div>
+                      <div class="col-6">
+                        <strong>Data de Atualização:</strong> {{item.lastUpdatedDate |date:'dd/MMM/yy'}}
+                      </div>
+                       <div class="col-6 d-flex flex-column justify-content-end">
+                            <button type="button" class="btn btn-warning mb-2" (click)="onEdit(item)">
+                            <i class="fa-solid fa-pen-to-square"></i> Editar
+                            </button>
+                            <button type="button" class="btn btn-danger" (click)="onDelete(item.earnedLeaveId)">
+                            <i class="fa-solid fa-trash"></i> Deletar
+                            </button>
+                        </div>
+                    </div> 
+                  </div> 
+                </div>
+              </div>
+            } 
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-3">
+      <div class="card">
+        <div class="card-header bg-secondary">
+          <div class="row">
+            <div class="col-8 text-white">
+              <strong>{{ formTitle }}</strong>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form id="leaveRequestForm" [formGroup]="form" (ngSubmit)="onSave()">
+            <div class="row">
+              <div class="col-md-12">
+                <label for="employeeId" class="form-label">Funcionário</label>
+                <select id="employeeId" name="employeeId" formControlName="employeeId" (change)="onEmployeeChange($event)" class="form-select">
+                  <option value="0" selected disabled>Selecionar Funcionário</option>
+                  @for (item of empoloyee$ |async; track $index) {
+                  <option [value]="item.employeeId" [attr.data-name]="item.employeeName">{{item.employeeName}}</option>
+                  }
+                </select>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="totalEarnedLeaves">Quantidade de Licenças</label>
+                  <input type="text" formControlName="totalEarnedLeaves" class="form-control" id="totalEarnedLeaves">
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="totalSickEarnedLeaves">Quantidade de Licenças médicas</label>
+                  <input type="text" formControlName="totalSickEarnedLeaves" class="form-control" id="totalSickEarnedLeaves">
+                </div>
+              </div>
+            </div>
+            
+            @if (form.value.earnedLeaveId == 0) {
+                    <button type="submit" class="btn btn-success mt-2"><i class="fa-solid fa-floppy-disk"></i> Cadastrar</button>
+                } @else { 
+                    <button type="button" (click)="onUpdateEarnedLeave()" class="btn btn-warning mt-3"><i class="fa-solid fa-pen-to-square"></i> Atualizar</button>
+                }
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
