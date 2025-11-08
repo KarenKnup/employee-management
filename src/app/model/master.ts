@@ -68,5 +68,16 @@ export interface LeaveType {
     contactNo: string
     typeName: string
   }
+
+  export interface DashboardValues {
+    dashboardId: number,
+    totalEmployee: number,
+    totalLeaves: number,
+    totalNewLeaves: number,
+    totalApprovedLeaves: number,
+    admins: number,
+    totalRejectedLeaves: number,
+    totalEarnedLeaves: number
+  }
   
   

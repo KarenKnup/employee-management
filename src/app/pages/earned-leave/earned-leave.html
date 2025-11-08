@@ -8,7 +8,7 @@
               <strong>Portal de Licenças</strong>
             </div>
             <div class="col-6 text-end">
-              <button class="btn btn-success border border-white" (click)="addEarnedLeave()">Cadastrar</button>
+              <button class="btn btn-success border border-white" (click)="addEarnedLeave()"><i class="fa-solid fa-plus"></i> Cadastrar</button>
             </div>
           </div>
         </div>
@@ -42,7 +42,7 @@ Isso significa que toda vez que o usuário digita uma letra, o Angular atualiza 
                         <strong>Licenças médicas disponíveis:</strong> {{item.totalSickEarnedLeaves}}
                       </div>
                       <div class="col-6">
-                        <strong>Data de Atualização:</strong> {{item.lastUpdatedDate |date:'dd/MMM/yy'}}
+                        <strong>Data de Atualização:</strong> {{item.lastUpdatedDate |date:'dd/MMM/yyyy'}}
                       </div>
                        <div class="col-6 d-flex flex-column justify-content-end">
                             <button type="button" class="btn btn-warning mb-2" (click)="onEdit(item)">

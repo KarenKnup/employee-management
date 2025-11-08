@@ -1,1 +1,97 @@
-<p>dashboard works!</p>
+<div class="container my-4">
+    <h3>Dashboard</h3>
+    <p>Olá, {{masterSrv.loggedUserData.employeeName}}!</p>
+      <div class="row justify-content-center">
+        <!-- Total Employees Widget -->
+         @if (masterSrv.loggedUserData.role !== "Employee") {
+          <div class="col-md-4 text-center">
+            <div class="card text-white bg-primary mb-3">
+              <div class="card-header">Total de Funcionários cadastrados</div>
+              <div class="card-body"> 
+                <h2 class="card-text" id="totalEmployees">{{dashboardData[0]?.totalEmployee}}</h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <div class="card text-white bg-success mb-3">
+              <div class="card-header">Total de Solicitações de Licenças cadastradas</div>
+              <div class="card-body"> 
+                <h2 class="card-text" id="totalProjects">{{dashboardData[0]?.totalLeaves}}</h2>
+              </div>
+            </div>
+          </div>
+         }
+       
+    
+        <!-- Total Projects Widget -->
+        
+    
+        <!-- Active Employees in Projects -->
+        <div class="col-md-4 text-center">
+          <div class="card text-white bg-success mb-3">
+            <div class="card-header">Total de Solicitações de Licença pendentes</div>
+            <div class="card-body"> 
+              <h2 class="card-text" id="activeEmployees">{{dashboardData[0]?.totalNewLeaves}}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="card text-white bg-primary mb-3">
+            <div class="card-header">Total de Administradores cadastrados</div>
+            <div class="card-body"> 
+              <h2 class="card-text" id="activeEmployees">{{dashboardData[0]?.admins}}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="card text-white bg-success mb-3">
+            <div class="card-header">Total de Solicitações de Licença aprovadas</div>
+            <div class="card-body"> 
+              <h2 class="card-text" id="activeEmployees">{{dashboardData[0]?.totalApprovedLeaves}}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="card text-white bg-success mb-3">
+            <div class="card-header">Total de Solicitações de Licença reprovadas</div>
+            <div class="card-body"> 
+              <h2 class="card-text" id="activeEmployees">{{dashboardData[0]?.totalRejectedLeaves}}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="card text-white bg-secondary mb-3">
+            <div class="card-header">Total de Licenças cadastradas</div>
+            <div class="card-body"> 
+              <h2 class="card-text" id="activeEmployees">{{dashboardData[0]?.totalEarnedLeaves}}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!--<div class="row">
+        <div class="col-md-6">
+          <div class="card mb-3">
+            <div class="card-header">Upcoming Leaves</div>
+            <div class="card-body">
+              <ul id="latestProjects" class="list-group">
+                List of latest projects will be dynamically inserted here 
+              </ul>
+            </div>
+          </div>
+        </div>
+    
+         Recently Hired Employees 
+        <div class="col-md-6">
+          <div class="card mb-3">
+            <div class="card-header">Other Employee Upcoming Leaves</div>
+            <div class="card-body">
+              <ul id="recentEmployees" class="list-group">
+                 List of recent employees will be dynamically inserted here 
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+-->

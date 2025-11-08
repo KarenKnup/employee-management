@@ -1,1 +1,177 @@
-<p>new-leave works!</p>
+<div class="container-fluid my-4">
+    <div class="row">
+        <div class="col-7">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    <div class="row">
+                        <div class="col-6 text-white">
+                            <strong>Portal de Licenças</strong> 
+                        </div>                        
+                    </div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    @for (item of requstList; track $index) {
+                      <div class="col-md-4"  >
+                        <div class="card mb-4">
+                          
+                          <!-- Card Header with Essential Information -->
+                          <div class="card-header d-flex justify-content-between align-items-center">                          
+                            <span><strong>{{item.employeeName}}</strong></span>
+                            <div><button class="btn btn-danger btn-sm me-2" (click)="deleteLeaveRequest(item.leaveId)" >X</button></div>
+                          </div>
+                  
+                          <!-- Card Body with Minimal Info and Toggle for More Details -->
+                          <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>Data inicial:</strong>   {{item.startDate | date:'dd/MMM/yyyy'}}
+                                </div>
+                                <div class="col-6">
+                                    <strong>Data final:</strong>   {{item.endDate | date:'dd/MMM/yyyy'}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>STATUS:</strong>   {{item.status}}
+                                </div>
+                                <div class="col-6">
+                                    <strong>Tipo de licença:</strong>  {{item.typeName}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <strong>Contato:</strong>   {{item.contactNo}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <strong>Data da solicitação:</strong>   {{item.requestDate | date:'dd/MMM/yyyy'}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <strong>Motivo:</strong>   {{item.reason}}
+                                </div>
+                            </div>
+                            <!-- Toggle Button to Show/Hide More Info -->
+                             
+                            
+                  
+                            <!-- More Information (Shown when toggle is active) -->
+                         
+                          </div>
+                  
+                          <!-- Card Footer with Action Buttons -->
+                          <div class="card-footer text-end"> 
+                            @if(masterSrv.loggedUserData.role == "Admin") {
+                              @if(item.status == "Aprovado") {
+                                <button class="btn btn-warning btn-sm me-2" (click)="changeStatusPending(item)" ><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="btn btn-dark btn-sm me-2" disabled >APROVADO</button> 
+                              } @else {
+                                @if(item.status == "Pendente") {
+                                  <button class="btn btn-warning btn-sm me-2" (click)="changeStatusApprove(item)" >✔︎ Aprovar</button>
+                                  <button class="btn btn-warning btn-sm me-2" (click)="changeStatusReject(item)" >✖︎ Reprovar</button>
+                                } @else {
+                                  <button class="btn btn-warning btn-sm me-2" (click)="changeStatusPending(item)" ><i class="fa-solid fa-pen-to-square"></i></button>
+                                  <button class="btn btn-dark btn-sm me-2" disabled >REPROVADO</button> 
+                                }
+                              }
+                              
+                            }  @else {
+                              @if(item.status == "Aprovado") {
+                                <button class="btn btn-dark btn-sm me-2" disabled >APROVADO</button> 
+                              }
+
+                              @if(item.status == "Reprovado") {
+                                <button class="btn btn-dark btn-sm me-2" disabled >REPROVADO</button> 
+                              }
+                              
+                              @if(item.status == "Pendente") {
+                                <button class="btn btn-warning btn-sm me-2" (click)="changeStatusApprove(item)" >✔︎ Aprovar</button>
+                                <button class="btn btn-warning btn-sm me-2" (click)="changeStatusReject(item)" >✖︎ Reprovar</button>
+                              }
+                             
+                            }
+                         
+                          </div>
+                        </div>
+                      </div>
+                    }
+                   
+                   
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    <div class="row">
+                        <div class="col-6 text-white">
+                            <strong>Cadastrar uma Solicitação de Licença</strong> 
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                  <form id="leaveRequestForm" [formGroup]="leaveForm">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="employeeId">Funcionário</label>
+                          <select  class="form-select" (change)="onEmployeeChange($event)" formControlName="employeeId" name="employeeId" id="employeeId">
+                            <option value="0" selected disabled>Selecionar Funcionário</option>
+                            @for (item of empoloyee$ |async; track $index) {
+                              <option [value]="item.employeeId" [attr.data-name]="item.employeeName"  [attr.data-contact]="item.contactNo">{{item.employeeName}}</option>
+                              }
+                          </select>
+                           
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="leaveTypeId">Tipo de Licença</label>                  
+                          <select id="leaveTypeId" name="leaveTypeId" formControlName="leaveTypeId" (change)="onLeaveTypeChange($event)" class="form-select">
+                              <option selected disabled value="0">Selecionar Tipo de Licença</option>
+                                  @for (item of leaveTypeList; track $index) {
+                                    <option [value]="item.leaveTypeId" [attr.data-name]="item.typeName">{{item.typeName}}</option>
+                                  }
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="startDate">Data inicial</label>
+                          <input type="date" formControlName="startDate" class="form-control" id="startDate">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="endDate">Data final</label>
+                          <input type="date" formControlName="endDate" class="form-control" id="endDate">
+                        </div>
+                      </div>
+                    </div>  
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="reason">Motivo</label>
+                          <textarea formControlName="reason" class="form-control" id="reason" rows="3" placeholder="Digite o motivo da licença"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                
+                    <button type="button" (click)="onSave()" class="btn btn-success mt-2"><i class="fa-solid fa-floppy-disk"></i> Cadastrar</button>
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+   
+
+  
+</div>

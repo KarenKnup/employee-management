@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { Login } from './pages/login/login';
 import {Layout} from "./pages/layout/layout";
-import {Dashboard} from "./pages/dashboard/dashboard";
+import { DashboardComponent } from "./pages/dashboard/dashboard";
 import {Employee} from "./pages/employee/employee";
 import {NewLeave} from "./pages/new-leave/new-leave";
 import { EarnedLeave } from './pages/earned-leave/earned-leave';
@@ -22,7 +22,7 @@ export const routes: Routes = [
         children: [
             {
                 path: 'dashboard',
-                component: Dashboard
+                component: DashboardComponent
             },
             {
                 path: 'employee',

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { APIResponse, EarnedLeaveClass, EmployeeClass, LeaveRequest, ParentDept, ChildDept } from '../model/master';
+import { APIResponse, EarnedLeaveClass, EmployeeClass, LeaveRequest, ParentDept, ChildDept, LeaveType, DashboardValues } from '../model/master';
 
 
 @Injectable({
@@ -47,6 +47,10 @@ export class MasterService {
     return this.http.get<EarnedLeaveClass[]>(this.apiUrl + "EarnedLeave")
   }
 
+  getEarnedLeaveByEmpId(employeeId: number): Observable<EarnedLeaveClass> {
+    return this.http.get<EarnedLeaveClass>(`${this.apiUrl}EarnedLeave/Employee/${employeeId}`);
+  }
+
   createEarnedLeave(earnedLeave: EarnedLeaveClass): Observable<any> {
     return this.http.post(this.apiUrl + "EarnedLeave/Create", earnedLeave);
   }
@@ -58,5 +62,34 @@ export class MasterService {
   updateEarnedLeave(id: number, earnedLeave: any): Observable<any> {
     return this.http.put(`${this.apiUrl}EarnedLeave/Update/${id}`, earnedLeave);
   }
+
+  getAllLeaveRequest(): Observable<LeaveRequest[]> {
+    return this.http.get<LeaveRequest[]>(this.apiUrl + "LeaveRequest");
+  }
+
+  getAllLeaveType(): Observable<LeaveType[]> {
+    return this.http.get<LeaveType[]>(this.apiUrl + "LeaveType");
+  }
+
+  createLeaveRequest(leaveRequest: LeaveRequest): Observable<any> {
+    return this.http.post(this.apiUrl + "LeaveRequest/Create", leaveRequest);
+  }
+
+  updateLeaveRequest(id: number, leaveRequest: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}LeaveRequest/Update/${id}`, leaveRequest);
+  }
+
+  deleteLeaveRequest(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}LeaveRequest/Delete/${id}`);
+  }
+  
+  getDashboardValues() : Observable<DashboardValues[]> {
+    return this.http.get<DashboardValues[]>(this.apiUrl + "DashboardValues")
+  }
+
+  /*getDashboardValue(id: number): Observable<DashboardValues[]> {
+    return this.http.get<DashboardValues[]>(`${this.apiUrl}DashboardValues/${id}`);
+  }*/
+
 
 }
