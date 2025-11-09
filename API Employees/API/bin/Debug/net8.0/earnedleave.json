@@ -1,0 +1,42 @@
+[
+  {
+    "earnedLeaveId": 1,
+    "employeeId": 1,
+    "totalEarnedLeaves": 20,
+    "totalSickEarnedLeaves": 5,
+    "lastUpdatedDate": "2025-10-01",
+    "employeeName": "Maria Silva"
+  },
+  {
+    "earnedLeaveId": 2,
+    "employeeId": 2,
+    "totalEarnedLeaves": 18,
+    "totalSickEarnedLeaves": 3,
+    "lastUpdatedDate": "2025-09-15",
+    "employeeName": "João Pereira"
+  },
+  {
+    "earnedLeaveId": 3,
+    "employeeId": 3,
+    "totalEarnedLeaves": 22,
+    "totalSickEarnedLeaves": 6,
+    "lastUpdatedDate": "2025-09-25",
+    "employeeName": "Ana Costa"
+  },
+  {
+    "earnedLeaveId": 4,
+    "employeeId": 4,
+    "totalEarnedLeaves": 15,
+    "totalSickEarnedLeaves": 2,
+    "lastUpdatedDate": "2025-10-10",
+    "employeeName": "Carlos Souza"
+  },
+  {
+    "earnedLeaveId": 5,
+    "employeeId": 5,
+    "totalEarnedLeaves": 25,
+    "totalSickEarnedLeaves": 4,
+    "lastUpdatedDate": "2025-10-20",
+    "employeeName": "Fernanda Lima"
+  }
+]

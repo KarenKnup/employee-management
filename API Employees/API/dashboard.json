@@ -1,0 +1,11 @@
+[
+  {
+    "totalEmployee": 6,
+    "totalLeaves": 5,
+    "totalNewLeaves": 1,
+    "totalApprovedLeaves": 3,
+    "admins": 0,
+    "totalRejectedLeaves": 0,
+    "totalEarnedLeaves": 5
+  }
+]

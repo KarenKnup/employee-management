@@ -1,0 +1,62 @@
+[
+  {
+    "employeeId": 1,
+    "employeeName": "Maria Silva",
+    "contactNo": "2199999999",
+    "emailId": "maria.silva@empresa.com",
+    "deptId": 1,
+    "password": "maria123",
+    "gender": "Feminino",
+    "role": "Employee"
+  },
+  {
+    "employeeId": 2,
+    "employeeName": "João Pereira",
+    "contactNo": "2198888888",
+    "emailId": "joao.pereira@empresa.com",
+    "deptId": 2,
+    "password": "joao123",
+    "gender": "Masculino",
+    "role": "Employee"
+  },
+  {
+    "employeeId": 3,
+    "employeeName": "Ana Costa",
+    "contactNo": "2197777777",
+    "emailId": "ana.costa@empresa.com",
+    "deptId": 1,
+    "password": "ana123",
+    "gender": "Feminino",
+    "role": "Employee"
+  },
+  {
+    "employeeId": 4,
+    "employeeName": "Carlos Souza",
+    "contactNo": "2196666666",
+    "emailId": "carlos.souza@empresa.com",
+    "deptId": 3,
+    "password": "carlos123",
+    "gender": "Masculino",
+    "role": "Employee"
+  },
+  {
+    "employeeId": 5,
+    "employeeName": "Fernanda Lima",
+    "contactNo": "2195555555",
+    "emailId": "fernanda.lima@empresa.com",
+    "deptId": 2,
+    "password": "fernanda123",
+    "gender": "Feminino",
+    "role": "Employee"
+  },
+  {
+    "employeeId": 6,
+    "employeeName": "Rafael Almeida",
+    "contactNo": "2194444444",
+    "emailId": "rafael.admin@empresa.com",
+    "deptId": 1,
+    "password": "admin123",
+    "gender": "Masculino",
+    "role": "Admin"
+  }
+]

@@ -1,0 +1,137 @@
+<div class="container-fluid my-4">
+    <div class="row">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-header bg-dark">
+                    <div class="row">
+                        <div class="col-6 text-white">
+                            <strong>Portal do Funcionário</strong> 
+                        </div>
+                        <div class="col-6 text-end">
+                            <button class="btn btn-success border border-white" (click)="addEmployee()"><i class="fa-solid fa-user-plus"></i> Cadastrar</button>
+                        </div>
+                    </div>
+                </div>
+                 <div class="card-body">
+                <!-- 🔍 Barra de pesquisa -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text bg-dark text-white">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Pesquisar funcionário..."
+                    [(ngModel)]="searchText" 
+                    /> <!--- O campo de pesquisa ([(ngModel)]="searchText") liga diretamente o valor digitado (searchText) ao filtro no template.
+Isso significa que toda vez que o usuário digita uma letra, o Angular atualiza o valor de searchText e o template é re-renderizado — ou seja, o filtro acontece automaticamente, sem precisar clicar em nenhum botão.-->
+                </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID </th>
+                                <th>Nome</th>
+                                <th>Número de Contato</th>
+                                <th>Email</th>  
+                                <!--<th>Gênero</th>-->
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (item of filteredEmployees; track $index) {
+                                <tr>
+                                    <td>{{$index+1}}</td>
+                                    <td>{{item.employeeName}}</td>
+                                    <td>{{item.contactNo}}</td>
+                                    <td>{{item.emailId}}</td> 
+                                    <!--<td>{{item.gender}}</td>-->
+                                    <td>
+                                        <button type="button" class="btn btn-warning btn-sm" (click)="onEdit(item)"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
+                                        <button type="button" class="btn btn-danger btn-sm mx-1" (click)="onDelete(item.employeeId)"><i class="fa-solid fa-trash"></i> Deletar</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header bg-dark">
+                    <div class="row">
+                        <div class="col-6 text-white">
+                            <strong>{{ formTitle }}</strong> 
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form class="mb-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="employeeName" class="form-label">Nome do Funcionário</label>
+                                <input name="employeeName" [(ngModel)]="employeeObj.employeeName"   class="form-control" id="employeeName" placeholder="Escreva o nome do funcionário">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="contactNo" class="form-label">Número de Contato</label>
+                                <input name="contactNo" [(ngModel)]="employeeObj.contactNo" class="form-control" id="contactNo" placeholder="Escreva o número de contato">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="emailId" class="form-label">Email</label>
+                                <input type="email"  name="emailId" [(ngModel)]="employeeObj.emailId" class="form-control" id="emailId" placeholder="Escreva o email">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="parentDeptId" class="form-label">Departamento Pai</label>
+                                <select id="parentDeptId"  name="parentDeptId" [(ngModel)]="employeeObj.deptId" class="form-select">
+                                    <option selected disabled value="0">Selecionar departamento</option>
+                                  @for (item of parentDepartmentList; track $index) {
+                                    <option [value]="item.departmentId">{{item.departmentName}}</option>
+                                  }
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="deptId" class="form-label">Departamento Filho</label>
+                                <select id="deptId"  name="deptId" [(ngModel)]="employeeObj.deptId" class="form-select" disabled="">
+                                    <option selected disabled value="0">Selecionar departamento</option>
+                                    @for (item of childDepartmentList; track $index) {
+                                        <option [value]="item.childDeptId">{{item.departmentName}}</option>
+                                      }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="password" class="form-label">Senha</label>
+                                <input type="password"   name="password" [(ngModel)]="employeeObj.password" class="form-control" id="password" placeholder="Escreva a senha">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="gender" class="form-label">Gênero</label>
+                                <select id="gender" name="gender" [(ngModel)]="employeeObj.gender" class="form-select">
+                                    <option selected disabled value="">Selecionar gênero</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Feminino">Feminino</option> 
+                                </select>
+                            </div>
+                          
+                        </div> 
+                        @if (employeeObj.employeeId == 0) {
+                            <button type="button" (click)="onSaveEmployee()" class="btn btn-success mt-3"><i class="fa-solid fa-floppy-disk"></i> Cadastrar</button>
+                        } @else { 
+                            <button type="button" (click)="onUpdateEmployee()" class="btn btn-warning mt-3"><i class="fa-solid fa-pen-to-square"></i> Atualizar</button>
+                        }
+                       
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+   
+
+  
+</div>

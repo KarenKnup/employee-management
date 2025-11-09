@@ -1,0 +1,27 @@
+[
+  {
+    "departmentId": 1,
+    "departmentName": "Recursos Humanos",
+    "departmentLogo": "hr_logo.png"
+  },
+  {
+    "departmentId": 2,
+    "departmentName": "Tecnologia da Informação",
+    "departmentLogo": "it_logo.png"
+  },
+  {
+    "departmentId": 3,
+    "departmentName": "Finanças",
+    "departmentLogo": "finance_logo.png"
+  },
+  {
+    "departmentId": 4,
+    "departmentName": "Marketing",
+    "departmentLogo": "marketing_logo.png"
+  },
+  {
+    "departmentId": 5,
+    "departmentName": "Operações",
+    "departmentLogo": "operations_logo.png"
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "childDeptId": 1,
+    "parentDeptId": 2,
+    "departmentName": "Desenvolvimento de Software"
+  },
+  {
+    "childDeptId": 2,
+    "parentDeptId": 2,
+    "departmentName": "Suporte Técnico"
+  },
+  {
+    "childDeptId": 3,
+    "parentDeptId": 1,
+    "departmentName": "Recrutamento"
+  },
+  {
+    "childDeptId": 4,
+    "parentDeptId": 3,
+    "departmentName": "Contabilidade"
+  },
+  {
+    "childDeptId": 5,
+    "parentDeptId": 4,
+    "departmentName": "Mídias Sociais"
+  }
+]

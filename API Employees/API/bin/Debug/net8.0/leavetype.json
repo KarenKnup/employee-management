@@ -1,0 +1,22 @@
+[
+  {
+    "leaveTypeId": 1,
+    "typeName": "Férias"
+  },
+  {
+    "leaveTypeId": 2,
+    "typeName": "Licença Médica"
+  },
+  {
+    "leaveTypeId": 3,
+    "typeName": "Licença Maternidade"
+  },
+  {
+    "leaveTypeId": 4,
+    "typeName": "Licença Paternidade"
+  },
+  {
+    "leaveTypeId": 5,
+    "typeName": "Ausência Justificada"
+  }
+]
