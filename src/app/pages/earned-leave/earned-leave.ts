@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MasterService } from '../../services/master.service';
-import { APIResponse, EarnedLeaveClass, EmployeeClass } from '../../model/master';
+import { APIResponse, DashboardValues, EarnedLeaveClass, EmployeeClass } from '../../model/master';
 import { Observable } from 'rxjs';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -125,9 +125,43 @@ export class EarnedLeave implements OnInit {
       },
       error: (err) => console.error('Erro ao buscar último ID:', err)
     });
-    
-    
+
+    this.updateCreatedLeaves();
+        
   }
+
+  updateCreatedLeaves(){
+        // Atualizar o total na Dashboard
+        this.masterSrv.getDashboardValues().subscribe({
+          next: (antes) => {
+            // O serviço pode retornar um array; usa o primeiro item ou o próprio objeto
+            const current = Array.isArray(antes) ? antes[0] : antes;
+            if (!current) {
+              console.error('Dashboard value not found');
+              return;
+            }
+    
+            //console.log(current.admins); return;
+    
+            // Atualiza o total (exemplo: diminuindo 1 funcionário)
+            const updatedTotal: DashboardValues = {
+              ...current,
+              totalEarnedLeaves: (current.totalEarnedLeaves ?? 0) + 1
+            };
+    
+            // Usa o dashboardId correto no PUT
+            this.masterSrv.updateDashboardValues(current.dashboardId, updatedTotal).subscribe({
+              next: () => {
+                console.log('Total atualizado com sucesso!');
+              },
+              error: (err) => {
+                console.error('Erro ao atualizar total:', err);
+              }
+            });
+          },
+          error: (err) => console.error('Erro ao buscar dashboard:', err)
+        });
+      }
 
   onDelete(earnedLeaveId: number) {
     if (confirm('Tem certeza que deseja deletar esta licença?')) {
@@ -141,8 +175,43 @@ export class EarnedLeave implements OnInit {
           alert('Erro ao deletar licença.');
         }
       });
+
+      this.updateDeletedLeaves();
     }
   }
+
+  updateDeletedLeaves(){
+        // Atualizar o total na Dashboard
+        this.masterSrv.getDashboardValues().subscribe({
+          next: (antes) => {
+            // O serviço pode retornar um array; usa o primeiro item ou o próprio objeto
+            const current = Array.isArray(antes) ? antes[0] : antes;
+            if (!current) {
+              console.error('Dashboard value not found');
+              return;
+            }
+    
+            //console.log(current.admins); return;
+    
+            // Atualiza o total (exemplo: diminuindo 1 funcionário)
+            const updatedTotal: DashboardValues = {
+              ...current,
+              totalEarnedLeaves: (current.totalEarnedLeaves ?? 0) - 1
+            };
+    
+            // Usa o dashboardId correto no PUT
+            this.masterSrv.updateDashboardValues(current.dashboardId, updatedTotal).subscribe({
+              next: () => {
+                console.log('Total atualizado com sucesso!');
+              },
+              error: (err) => {
+                console.error('Erro ao atualizar total:', err);
+              }
+            });
+          },
+          error: (err) => console.error('Erro ao buscar dashboard:', err)
+        });
+      }
 
   onEdit(item: EarnedLeaveClass) {
     // Preenche o formulário com os dados para edição

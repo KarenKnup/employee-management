@@ -87,9 +87,13 @@ export class MasterService {
     return this.http.get<DashboardValues[]>(this.apiUrl + "DashboardValues")
   }
 
-  /*getDashboardValue(id: number): Observable<DashboardValues[]> {
+  updateDashboardValues(id: number, dashboard: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}DashboardValues/Update/${id}`, dashboard);
+  }
+
+  getDashboardValue(id: number): Observable<DashboardValues[]> {
     return this.http.get<DashboardValues[]>(`${this.apiUrl}DashboardValues/${id}`);
-  }*/
+  }
 
 
 }

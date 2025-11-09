@@ -18,7 +18,7 @@
                           <!-- Card Header with Essential Information -->
                           <div class="card-header d-flex justify-content-between align-items-center">                          
                             <span><strong>{{item.employeeName}}</strong></span>
-                            <div><button class="btn btn-danger btn-sm me-2" (click)="deleteLeaveRequest(item.leaveId)" >X</button></div>
+                            <div><button class="btn btn-danger btn-sm me-2" (click)="deleteLeaveRequest(item.leaveId, item.status)" >X</button></div>
                           </div>
                   
                           <!-- Card Body with Minimal Info and Toggle for More Details -->

@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MasterService } from '../../services/master.service';
-import { APIResponse, EmployeeClass, LeaveRequest, LeaveType } from '../../model/master';
+import { APIResponse, DashboardValues, EmployeeClass, LeaveRequest, LeaveType } from '../../model/master';
 import { Observable } from 'rxjs';
 import { AsyncPipe, DatePipe } from '@angular/common';
 
@@ -23,6 +23,7 @@ export class NewLeave implements OnInit{
 
   constructor() {
     this.initializeForm();
+    //this.updateTotalLeaves();
     this.empoloyee$ =  this.masterSrv.GetAllEmployees();
   }
 
@@ -40,6 +41,7 @@ export class NewLeave implements OnInit{
       contactNo: new FormControl(''),
       typeName: new FormControl(''),
     })
+    
     debugger;
 
     if(this.masterSrv.loggedUserData.role == 'Employee') {
@@ -132,6 +134,9 @@ export class NewLeave implements OnInit{
             // Reinicializa o formulário para o estado padrão
             this.initializeForm();
 
+            // Atualiza os contadores apenas depois de salvar
+            this.updateNewLeaves();
+
             // Atualiza o título e a lista
             //this.formTitle = 'Cadastrar licenças de um funcionário';
 
@@ -150,7 +155,8 @@ export class NewLeave implements OnInit{
       },
       error: (err) => console.error('Erro ao buscar último ID:', err)
     });
-    
+
+
   }
 
   changeStatusApprove(item: any) {
@@ -214,6 +220,8 @@ export class NewLeave implements OnInit{
         }
       });
     } 
+
+    this.updateApprovedLeaves();
   }
 
   changeStatusReject(item: any) {
@@ -237,6 +245,7 @@ export class NewLeave implements OnInit{
       }
     });
 
+    this.updateRejectedLeaves();
   }
 
   changeStatusPending(item: any) {
@@ -297,9 +306,12 @@ export class NewLeave implements OnInit{
         }
       });
     } 
+
+    this.updatePendentLeave(item.status);
+
   } 
 
-  deleteLeaveRequest(leaveId: number) {
+  deleteLeaveRequest(leaveId: number, status: string) {
     if (confirm('Tem certeza que deseja deletar esta solicitação de licença?')) {
       this.masterSrv.deleteLeaveRequest(leaveId).subscribe({
         next: () => {
@@ -315,6 +327,207 @@ export class NewLeave implements OnInit{
           alert(err?.message || 'Erro ao deletar solicitação. Verifique o console e a aba Network.');
         }
       });
+
+      this.updateDeleteLeave(status);
     }
   }
+
+     updateNewLeaves(){
+      // Atualizar o total na Dashboard
+      this.masterSrv.getDashboardValues().subscribe({
+        next: (antes) => {
+          // O serviço pode retornar um array; usa o primeiro item ou o próprio objeto
+          const current = Array.isArray(antes) ? antes[0] : antes;
+          if (!current) {
+            console.error('Dashboard value not found');
+            return;
+          }
+  
+          //console.log(current.admins); return;
+  
+          // Atualiza o total (exemplo: diminuindo 1 funcionário)
+          const updatedTotal: DashboardValues = {
+            ...current,
+            totalNewLeaves: (current.totalNewLeaves ?? 0) + 1,
+            totalLeaves: (current.totalLeaves ?? 0) + 1,
+          };
+  
+          // Usa o dashboardId correto no PUT
+          this.masterSrv.updateDashboardValues(current.dashboardId, updatedTotal).subscribe({
+            next: () => {
+              console.log('Total atualizado com sucesso!');
+            },
+            error: (err) => {
+              console.error('Erro ao atualizar total:', err);
+            }
+          });
+        },
+        error: (err) => console.error('Erro ao buscar dashboard:', err)
+      });
+    }
+
+    updateApprovedLeaves(){
+      // Atualizar o total na Dashboard
+      this.masterSrv.getDashboardValues().subscribe({
+        next: (antes) => {
+          // O serviço pode retornar um array; usa o primeiro item ou o próprio objeto
+          const current = Array.isArray(antes) ? antes[0] : antes;
+          if (!current) {
+            console.error('Dashboard value not found');
+            return;
+          }
+  
+          //console.log(current.admins); return;
+  
+          // Atualiza o total (exemplo: diminuindo 1 funcionário)
+          const updatedTotal: DashboardValues = {
+            ...current,
+            totalApprovedLeaves: (current.totalApprovedLeaves ?? 0) + 1,
+            totalNewLeaves: (current.totalApprovedLeaves ?? 0) - 1
+          };
+  
+          // Usa o dashboardId correto no PUT
+          this.masterSrv.updateDashboardValues(current.dashboardId, updatedTotal).subscribe({
+            next: () => {
+              console.log('Total atualizado com sucesso!');
+            },
+            error: (err) => {
+              console.error('Erro ao atualizar total:', err);
+            }
+          });
+        },
+        error: (err) => console.error('Erro ao buscar dashboard:', err)
+      });
+    }
+
+    updateRejectedLeaves(){
+      // Atualizar o total na Dashboard
+      this.masterSrv.getDashboardValues().subscribe({
+        next: (antes) => {
+          // O serviço pode retornar um array; usa o primeiro item ou o próprio objeto
+          const current = Array.isArray(antes) ? antes[0] : antes;
+          if (!current) {
+            console.error('Dashboard value not found');
+            return;
+          }
+  
+          //console.log(current.admins); return;
+  
+          // Atualiza o total (exemplo: diminuindo 1 funcionário)
+          const updatedTotal: DashboardValues = {
+            ...current,
+            totalRejectedLeaves: (current.totalRejectedLeaves ?? 0) + 1,
+            totalNewLeaves: (current.totalApprovedLeaves ?? 0) - 1
+          };
+  
+          // Usa o dashboardId correto no PUT
+          this.masterSrv.updateDashboardValues(current.dashboardId, updatedTotal).subscribe({
+            next: () => {
+              console.log('Total atualizado com sucesso!');
+            },
+            error: (err) => {
+              console.error('Erro ao atualizar total:', err);
+            }
+          });
+        },
+        error: (err) => console.error('Erro ao buscar dashboard:', err)
+      });
+    }
+
+      updateDeleteLeave(status_leave: string){
+          // Atualizar o total na Dashboard
+          this.masterSrv.getDashboardValues().subscribe({
+            next: (antes) => {
+              // O serviço pode retornar um array; usa o primeiro item ou o próprio objeto
+              const current = Array.isArray(antes) ? antes[0] : antes;
+              if (!current) {
+                console.error('Dashboard value not found');
+                return;
+              }
+      
+              //console.log(current.admins); return;
+      
+              // Inicializa updatedTotal com uma cópia do current
+              let updatedTotal: DashboardValues = { ...current };
+      
+              // Atualiza o total conforme o status da solicitação excluída
+              if (status_leave === "Pendente") { //Ele está pendente
+                updatedTotal = {
+                  ...current,
+                  totalLeaves: (current.totalLeaves ?? 0) - 1,
+                  totalNewLeaves: (current.totalNewLeaves ?? 0) - 1
+                };
+              } else if (status_leave === "Aprovado") {
+                updatedTotal = {
+                  ...current,
+                  totalLeaves: (current.totalLeaves ?? 0) - 1,
+                  totalApprovedLeaves: (current.totalApprovedLeaves ?? 0) - 1
+                };
+              } else { // Reprovado
+                updatedTotal = {
+                  ...current,
+                  totalLeaves: (current.totalLeaves ?? 0) - 1,
+                  totalRejectedLeaves: (current.totalRejectedLeaves ?? 0) - 1
+                };
+              }          
+     
+              // Usa o dashboardId correto no PUT
+              this.masterSrv.updateDashboardValues(current.dashboardId, updatedTotal).subscribe({
+                next: () => {
+                  console.log('Total atualizado com sucesso!');
+                },
+                error: (err) => {
+                  console.error('Erro ao atualizar total:', err);
+                }
+              });
+            },
+            error: (err) => console.error('Erro ao buscar dashboard:', err)
+          });
+        }
+
+        updatePendentLeave(status_leave: string){
+          // Atualizar o total na Dashboard
+          this.masterSrv.getDashboardValues().subscribe({
+            next: (antes) => {
+              // O serviço pode retornar um array; usa o primeiro item ou o próprio objeto
+              const current = Array.isArray(antes) ? antes[0] : antes;
+              if (!current) {
+                console.error('Dashboard value not found');
+                return;
+              }
+      
+              //console.log(current.admins); return;
+      
+              // Inicializa updatedTotal com uma cópia do current
+              let updatedTotal: DashboardValues = { ...current };
+      
+              // Atualiza o total conforme o status da solicitação excluída
+              if (status_leave === "Aprovado") {
+                updatedTotal = {
+                  ...current,
+                  totalNewLeaves: (current.totalNewLeaves ?? 0) + 1,
+                  totalApprovedLeaves: (current.totalApprovedLeaves ?? 0) - 1
+                };
+              } else { // Reprovado
+                updatedTotal = {
+                  ...current,
+                  totalNewLeaves: (current.totalNewLeaves ?? 0) + 1,
+                  totalRejectedLeaves: (current.totalRejectedLeaves ?? 0) - 1
+                };
+              }          
+     
+              // Usa o dashboardId correto no PUT
+              this.masterSrv.updateDashboardValues(current.dashboardId, updatedTotal).subscribe({
+                next: () => {
+                  console.log('Total atualizado com sucesso!');
+                },
+                error: (err) => {
+                  console.error('Erro ao atualizar total:', err);
+                }
+              });
+            },
+            error: (err) => console.error('Erro ao buscar dashboard:', err)
+          });
+        }
+
 }

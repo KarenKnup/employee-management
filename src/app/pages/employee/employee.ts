@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { APIResponse, ChildDept, EmployeeClass, ParentDept } from '../../model/master';
+import { APIResponse, ChildDept, DashboardValues, EmployeeClass, ParentDept } from '../../model/master';
 import { MasterService } from '../../services/master.service';
 
 
@@ -20,12 +20,15 @@ export class Employee implements OnInit {
   employeeList: EmployeeClass[] = [];
   formTitle: string = 'Cadastrar um Funcionário';
   searchText: string = '';
+  dashboardId = 1;
 
   ngOnInit(): void {
     //O que acontece ao carregar a página
     this.loadParentDept();
     this.loadEmployee();
     this.getAllChild();
+
+   // this.updateTotalEmployee();
   }
 
   loadEmployee(){
@@ -107,6 +110,42 @@ export class Employee implements OnInit {
         });
       },
       error: (err) => console.error('Erro ao buscar último ID:', err)
+    });
+
+    //Atualizar o totalEmployee na Dashboard
+    this.updateTotalEmployee();
+  }
+
+  updateTotalEmployee(){
+    // Atualizar o total na Dashboard
+    this.masterSrv.getDashboardValues().subscribe({
+      next: (antes) => {
+        // O serviço pode retornar um array; usa o primeiro item ou o próprio objeto
+        const current = Array.isArray(antes) ? antes[0] : antes;
+        if (!current) {
+          console.error('Dashboard value not found');
+          return;
+        }
+
+        //console.log(current.admins); return;
+
+        // Atualiza o total (exemplo: diminuindo 1 funcionário)
+        const updatedTotal: DashboardValues = {
+          ...current,
+          totalEmployee: (current.totalEmployee ?? 0) + 1
+        };
+
+        // Usa o dashboardId correto no PUT
+        this.masterSrv.updateDashboardValues(current.dashboardId, updatedTotal).subscribe({
+          next: () => {
+            console.log('Total atualizado com sucesso!');
+          },
+          error: (err) => {
+            console.error('Erro ao atualizar total:', err);
+          }
+        });
+      },
+      error: (err) => console.error('Erro ao buscar dashboard:', err)
     });
   }
 
