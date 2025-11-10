@@ -20,15 +20,39 @@
     </thead>
     <tbody>
       <tr>
-        <td>x</td>
+        <td><code>API Employees</code></td>
+        <td>É a API que desenvolvi usando C# no Visual Studio para interagir com o sistema entregando as informações do banco de dados.</td>
+      </tr>
+      <tr>
+        <td>Projeto/<code>public</code></td>
+        <td>Pasta de documentos públicos, visíveis para todos os usuários.</td>
+      </tr>
+      <tr>
+        <td>Projeto/public/<code>api_employees.sql</code></td>
+        <td>É a importação do banco de dados com os dados de teste.</td>
+      </tr>
+      <tr>
+        <td>Projeto/<code>angular.json</code></td>
         <td>x</td>
       </tr>
       <tr>
-        <td>x</td>
+        <td>Projeto/<code>src</code></td>
         <td>x</td>
       </tr>
       <tr>
+        <td>Projeto/src/<code>index.html</code></td>
         <td>x</td>
+      </tr>
+      <tr>
+        <td>Projeto/src/<code>index.html</code></td>
+        <td>x</td>
+      </tr>
+      <tr>
+        <td>Projeto/src/<code>main.ts</code></td>
+        <td>x</td>
+      </tr>
+      <tr>
+        <td>Projeto/src/<code>styles.css</code></td>
         <td>x</td>
       </tr>
       <tr>
