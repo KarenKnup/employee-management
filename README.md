@@ -53,11 +53,11 @@
       </tr>
       <tr>
         <td>Prjeto/src/<code>app</code></td>
-        <td>x</td>
-      </tr>      
+        <td>É nessa pasta que fica todo o código da aplicação propriamente dita (componentes, módulos, serviços, rotas, etc).</td>
+      </tr>     
       <tr>
         <td>Projeto/src/app/<code>model</code></td>
-        <td>x</td>
+        <td>Pasta que serve para organizar as classes (definem a forma/estrutura e a lógica com getters e setters) e interfaces (definem a forma/estrura) que representam os dados usados pelo sistema.</td>
       </tr>
       <tr>
         <td>Projeto/src/app/<code>pages</code></td>
@@ -65,19 +65,23 @@
       </tr>
       <tr>
         <td>Projeto/src/app/<code>services</code></td>
-        <td>x</td>
+        <td>Pasta onde ficam as classes responsáveis comunicação com o backend (API) e serviços (normalmente externos) de suporte à aplicação, não necessariamente relacionado à interface visual. Nela são definidos services que lidam com requisições HTTP, autenticação, configurações, manipulação de dados e regras de negócio reutilizáveis entre os componentes.</td>
+      </tr>
+      <tr>
+        <td>Projeto/src/app/<code>app.routes.ts</code></td>
+        <td>É o arquivo que configura o sistema de rotas da aplicação, ou seja, define quais componentes (páginas) aparecem em cada URL.</td>
       </tr>
       <tr>
         <td>Projeto/src/app/<code>app.ts</code></td>
-        <td>x</td>
+        <td>Arquivo que contém a lógica e define o componente raiz da aplicação Angular.</td>
       </tr>
       <tr>
         <td>Projeto/src/app/<code>app.html</code></td>
-        <td>x</td>
+        <td>É o template principal (HTML) do componente raiz da aplicação.</td>
       </tr>
       <tr>
         <td>Projeto/src/app/<code>app.css<code></td>
-        <td>x</td>
+        <td>É o arquivo de estilização do componente raiz da aplicação.</td>
       </tr>     
     </tbody>
   </table>
@@ -93,7 +97,7 @@
 
 - Responsividade.
 - Adicionar a opção de selecionar o status do novo usuário a ser cadastrado entre Admin e Employee.
-- Conter a quantidade de blocos nas tables.
+- Limitar em páginas a quantidade de blocos nas tables.
 - Investir em segurança.
 - Criar a página de "Esqueci a minha senha".
 - Cadastro de dados via importação.
