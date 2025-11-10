@@ -10,6 +10,56 @@
 
 <div align="center">
   <h2>Pastas e Arquivos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Função</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>x</td>
+        <td>x</td>
+      </tr>
+      <tr>
+        <td>x</td>
+        <td>x</td>
+      </tr>
+      <tr>
+        <td>x</td>
+        <td>x</td>
+      </tr>
+      <tr>
+        <td>x</td>
+        <td>x</td>
+      </tr>
+      <tr>
+        <td>x</td>
+        <td>x</td>
+      </tr>
+      <tr>
+        <td>x</td>
+        <td>x</td>
+      </tr>
+      <tr>
+        <td>x</td>
+        <td>x</td>
+      </tr>
+      <tr>
+        <td>x</td>
+        <td>x</td>
+      </tr>
+      <tr>
+        <td>x</td>
+        <td>x</td>
+      </tr>
+      <tr>
+        <td>x</td>
+        <td>x</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <div align="center">
@@ -28,7 +78,3 @@
 - Cadastro de dados via importação.
 - Adicionar biblioteca para os alerts.
 
-
-
-
- Escrever o passo a passo e instrções no readme (tem que criar o banco de dados e etc)
