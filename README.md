@@ -52,33 +52,33 @@
         <td>É o arquivo global de estilos do projeto. Tudo que se coloca nele é aplicado em toda a aplicação, e não apenas em um componente.</td>
       </tr>
       <tr>
+        <td>Prjeto/src/<code>app</code></td>
         <td>x</td>
+      </tr>      
+      <tr>
+        <td>Projeto/src/app/<code>model</code></td>
         <td>x</td>
       </tr>
       <tr>
-        <td>x</td>
-        <td>x</td>
-      </tr>
-      <tr>
-        <td>x</td>
+        <td>Projeto/src/app/<code>pages</code></td>
         <td>x</td>
       </tr>
       <tr>
-        <td>x</td>
-        <td>x</td>
-      </tr>
-      <tr>
-        <td>x</td>
+        <td>Projeto/src/app/<code>services</code></td>
         <td>x</td>
       </tr>
       <tr>
-        <td>x</td>
+        <td>Projeto/src/app/<code>app.ts</code></td>
         <td>x</td>
       </tr>
       <tr>
-        <td>x</td>
+        <td>Projeto/src/app/<code>app.html</code></td>
         <td>x</td>
       </tr>
+      <tr>
+        <td>Projeto/src/app/<code>app.css<code></td>
+        <td>x</td>
+      </tr>     
     </tbody>
   </table>
 </div>
