@@ -1,8 +1,9 @@
-<img src="teste.gif" alt="Animação de teste">
 <div align="center">
   <h1>Gerenciador de Licenças</h1>
   <code>Angular</code> <code>API</code> <code>C#</code> <code>Typescript</code> <code>MySQL</code> <code>Bootstrap</code> <code>Font Awesome</code>
 </div>
+<br>
+<img src="teste.gif" alt="Animação de teste">
 
 <div align="center">
   <h2>O que é o GL?</h2>
