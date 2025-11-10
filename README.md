@@ -92,11 +92,11 @@
   <h2>Comandos usados no VS Code</h2>
 </div>
 
-- Baixar a versão mais recente do Angular no projeto
+- Baixar a versão mais recente do Angular na pasta do projeto
 ```text
 npm install -g @angular/cli@latest
 ```
-- Criar um novo projeto em Angular
+- Criar o projeto em Angular
 ```text
 ng new employeemanagement
 ```
