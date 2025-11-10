@@ -7,7 +7,7 @@
 
 <div align="center">
   <h2>O que é o GL?</h2>
-  O <strong>Gerenciador de Licenças</strong> (GL) é um sistema que desenvolvi para o estudo de Angular e Typescript. A proposta é simples, pois é o meu primeiro projeto usando Angular e Typescript com uma API integrada, é um sistema que permite que os administradores administrem as licenças dos funcionários e que os funcionários possam solicitar uma licença dentro de uma data inicial e data final (por exemplo, do dia 12/10 ao dia 14/10) e por determinado motivo. 
+  O <strong>Gerenciador de Licenças</strong> (GL) é um sistema que desenvolvi para o estudo de Angular e Typescript. A proposta é simples, pois é o meu primeiro projeto usando Angular e Typescript com uma API integrada, é um sistema que permite que os administradores gerenciem as licenças dos funcionários e que os funcionários possam solicitar uma licença dentro de uma data inicial e data final (por exemplo, do dia 12/10 ao dia 14/10) e por determinado motivo. 
 </div>
 
 <div align="center">
@@ -91,6 +91,50 @@
 <div align="center">
   <h2>Comandos usados no VS Code</h2>
 </div>
+
+- Baixar a versão mais recente do Angular no projeto
+```text
+npm install -g @angular/cli@latest
+```
+- Criar um novo projeto em Angular
+```text
+ng new employeemanagement
+```
+- Instalar o Bootstrap no projeto
+```text
+npm install bootstrap
+```
+- Instalar o Font Awesome no projeto
+```text
+npm install @fontawesome/fontawesome-free
+```
+- Criar os componentes (páginas) de <code>/pages</code>
+```text
+ng g c login
+```
+```text
+ng g c layout
+```
+```text
+ng g c employee
+```
+```text
+ng g c newLeave
+```
+```text
+ng g c earnedLeave
+```
+```text
+ng g c dashboard
+```
+- Criar o service em <code>/services</code>
+```text
+ng g s master
+```
+- Executar o projeto após selecionar a pasta no terminal do VS Code: <code>Pasta Projeto ➡︎ Open in Integrated Terminal</code>
+```text
+ng serve --port 4200
+```
 
 <div align="center">
   <h2>Planejamentos futuros</h2>
