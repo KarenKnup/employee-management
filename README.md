@@ -7,7 +7,7 @@
 
 <div align="center">
   <h2>O que é o GL?</h2>
-  O <strong>Gerenciador de Licenças</strong> (GL) é um sistema que desenvolvi para o estudo de Angular e Typescript. A proposta é simples, pois é o meu primeiro projeto usando Angular e Typescript com uma API integrada, é um sistema que permite que os administradores gerenciem as licenças dos funcionários e que os funcionários possam solicitar uma licença dentro de uma data inicial e data final (por exemplo, do dia 12/10 ao dia 14/10) e por determinado motivo. 
+  O <strong>Gerenciador de Licenças</strong> (GL) é um sistema que desenvolvi para o estudo de Angular e Typescript. A proposta é simples, pois é o meu <strong>primeiro projeto usando Angular e Typescript</strong> com uma API integrada, é um sistema que permite que os administradores gerenciem as licenças dos funcionários e que os funcionários possam solicitar uma licença dentro de uma data inicial e data final (por exemplo, do dia 12/10 ao dia 14/10) e por determinado motivo. 
 </div>
 
 <div align="center">
