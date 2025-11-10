@@ -5,7 +5,7 @@
 </div>
 
 <div align="center">
-  <h2>O que é o GS?</h2>
+  <h2>O que é o GL?</h2>
 </div>
 
 <div align="center">
