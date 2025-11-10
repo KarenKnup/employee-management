@@ -25,7 +25,7 @@
       </tr>
       <tr>
         <td>Projeto/<code>public</code></td>
-        <td>Pasta de documentos públicos, visíveis para todos os usuários.</td>
+        <td>Pasta de documentos e arquivos públicos, visíveis para todos os usuários.</td>
       </tr>
       <tr>
         <td>Projeto/public/<code>api_employees.sql</code></td>
@@ -33,27 +33,23 @@
       </tr>
       <tr>
         <td>Projeto/<code>angular.json</code></td>
-        <td>x</td>
+        <td>É o arquivo que configura o comportamento e toda a estrutura do projeto. Ele é gerado automaticamente sempre que um novo projeto Angular é criado.</td>
       </tr>
       <tr>
         <td>Projeto/<code>src</code></td>
-        <td>x</td>
+        <td>A pasta src (source) é onde fica o código-fonte da aplicação e onde o projeto foi desenvolvido.</td>
       </tr>
       <tr>
         <td>Projeto/src/<code>index.html</code></td>
-        <td>x</td>
-      </tr>
-      <tr>
-        <td>Projeto/src/<code>index.html</code></td>
-        <td>x</td>
+        <td>Esse arquivo é o ponto de entrada da aplicação no navegador — é a página HTML base onde o Angular insere automaticamente todo o app.</td>
       </tr>
       <tr>
         <td>Projeto/src/<code>main.ts</code></td>
-        <td>x</td>
+        <td>Esse arquivo é o ponto de entrada principal do código TypeScript no projeto Angular — é nele que o framework é inicializado e a aplicação começa a rodar. O <code>index.html</code> carrega o Angular no navegador, e o <code>main.ts</code> diz ao Angular qual módulo inicializar (o App).</td>
       </tr>
       <tr>
         <td>Projeto/src/<code>styles.css</code></td>
-        <td>x</td>
+        <td>É o arquivo global de estilos do projeto. Tudo que se coloca nele é aplicado em toda a aplicação, e não apenas em um componente.</td>
       </tr>
       <tr>
         <td>x</td>
