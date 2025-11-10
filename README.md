@@ -61,7 +61,7 @@
       </tr>
       <tr>
         <td>Projeto/src/app/<code>pages</code></td>
-        <td>x</td>
+        <td>É a pasta onde ficam as páginas (componentes) do sistema.</td>
       </tr>
       <tr>
         <td>Projeto/src/app/<code>services</code></td>
